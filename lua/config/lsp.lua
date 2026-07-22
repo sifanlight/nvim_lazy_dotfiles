@@ -84,6 +84,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
     opts.desc = "Show documentation for what is under cursor"
     keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
+    opts.desc = "Switch between header and source"
+    keymap.set("n", "<leader>h", function()
+      vim.lsp.buf_request(0, 'textDocument/switchSourceHeader', { uri = vim.uri_from_bufnr(0) }, function(err, result)
+        if err or not result then
+          print("Corresponding file not found")
+          return
+        end
+        vim.cmd('edit ' .. vim.uri_to_fname(result))
+      end)
+    end, opts)
+
     opts.desc = "Restart LSP"
     keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
   end,
