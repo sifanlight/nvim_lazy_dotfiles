@@ -8,7 +8,7 @@ return {
     workspaces = {
       {
         name = "Diffusion",
-        path = "/Users/sinakarimi/University/diffusion_OPCM",
+        path = "/Users/sinakarimi/University/diffusion_OPCM/Notes",
       },
     },
   },
