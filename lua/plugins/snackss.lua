@@ -2,6 +2,12 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  -- Inside tmux the XTVERSION query is answered by tmux, so snacks never
+  -- learns the outer terminal is Ghostty and falls back to no images.
+  -- SNACKS_GHOSTTY is snacks' documented override for exactly this case.
+  init = function()
+    vim.env.SNACKS_GHOSTTY = "true"
+  end,
   ---@type snacks.Config
   opts = {
     -- your configuration comes here
